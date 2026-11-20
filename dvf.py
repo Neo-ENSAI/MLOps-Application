@@ -21,8 +21,19 @@ from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import FunctionTransformer, OrdinalEncoder
 from skore import EstimatorReport
+import argparse
 
-N_TREES = 1500
+from dotenv import load_dotenv
+
+load_dotenv()
+
+parser = argparse.ArgumentParser(description='Choose the number of trees')
+
+parser.add_argument(
+    "--n_trees", type=int, default="1500", help="Number of trees"
+)
+
+N_TREES = parser.parse_args().n_trees
 LEARNING_RATE = 0.03
 NUM_LEAVES = 31
 NUMERIC_FEATURES = [
