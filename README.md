@@ -1,6 +1,6 @@
 # Application Exercise from MLOps/LLMOps Course
 
-Guided exercice from https://ensae-reproductibilite.github.io/website/chapters/application.html
+Guided exercise from https://ensae-reproductibilite.github.io/website/chapters/application.html
 
 
 
