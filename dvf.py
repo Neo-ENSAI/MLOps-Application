@@ -487,3 +487,4 @@ importance = report.inspection.permutation_importance(data_source="test").frame(
 print(importance)
 
 print("Fin du script !")
+
