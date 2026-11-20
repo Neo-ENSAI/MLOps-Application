@@ -3,6 +3,8 @@ Predict the price per m² of homes sold in Paris and its inner suburbs
 from DVF transactions enriched with Filosofi socio-economic data
 """
 
+import argparse
+import os
 from pathlib import Path
 
 import duckdb
@@ -12,6 +14,7 @@ import numpy as np
 import pandas as pd
 import requests
 import seaborn as sns
+from dotenv import load_dotenv
 from lightgbm import LGBMRegressor
 from sklearn.base import clone
 from sklearn.compose import ColumnTransformer, TransformedTargetRegressor
@@ -21,17 +24,12 @@ from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import FunctionTransformer, OrdinalEncoder
 from skore import EstimatorReport
-import argparse
-
-from dotenv import load_dotenv
 
 load_dotenv()
 
-parser = argparse.ArgumentParser(description='Choose the number of trees')
+parser = argparse.ArgumentParser(description="Choose the number of trees")
 
-parser.add_argument(
-    "--n_trees", type=int, default="1500", help="Number of trees"
-)
+parser.add_argument("--n_trees", type=int, default="1500", help="Number of trees")
 
 N_TREES = parser.parse_args().n_trees
 LEARNING_RATE = 0.03
@@ -56,7 +54,7 @@ NUMERIC_FEATURES = [
 CATEGORICAL_FEATURES = ["code_commune", "type_local"]
 DEPARTEMENTS_PARIS = ["75", "92", "93", "94"]
 
-JETON_API = "1SuperJetonUltraConfidentiel!!!"
+JETON_API = os.environ["JETON_API"]
 
 DATA_LOCATION = Path("data")
 SOURCES = {
