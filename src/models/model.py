@@ -14,7 +14,7 @@ def as_category(df):
 def build_model_pipeline(
     numeric_features: list[str],
     categorical_features: list[str],
-    n_estimators: int = 1500,
+    n_trees: int = 1500,
     learning_rate: float = 0.03,
     num_leaves: int = 31,
 ) -> Pipeline:
@@ -52,9 +52,9 @@ def build_model_pipeline(
             (
                 "regressor",
                 LGBMRegressor(
-                    n_estimators,
-                    learning_rate,
-                    num_leaves,
+                    n_estimators=n_trees,
+                    learning_rate=learning_rate,
+                    num_leaves=num_leaves,
                     min_child_samples=10,
                     subsample=0.8,
                     colsample_bytree=0.8,

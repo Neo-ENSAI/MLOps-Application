@@ -15,11 +15,11 @@ from dotenv import load_dotenv
 from sklearn.metrics import root_mean_squared_error
 from sklearn.model_selection import train_test_split
 
-from src.data.check import *
-from src.data.features import *
-from src.data.import_data import *
-from src.models.evaluation import *
-from src.models.model import *
+from data.check import *
+from data.features import *
+from data.import_data import *
+from models.evaluation import *
+from models.model import *
 
 load_dotenv()
 con = duckdb.connect(database=":memory:")
@@ -165,7 +165,7 @@ for string_var in CATEGORICAL_FEATURES:
 
 # TRAINING AND EVALUATION ---------------------------------------
 
-pipe = create_pipeline(
+pipe = build_model_pipeline(
     NUMERIC_FEATURES,
     CATEGORICAL_FEATURES,
     n_trees=n_trees,
